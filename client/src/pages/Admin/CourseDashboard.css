@@ -1,0 +1,70 @@
+.dashboard-container {
+  background-color: #f3f2ef;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.dashboard-navbar {
+  background-color: #0a66c2;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-navbar button {
+  background: white;
+  color: #0a66c2;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Content */
+.dashboard-content {
+  padding: 40px;
+}
+
+/* Search */
+.search-input {
+  width: 300px;
+  padding: 8px;
+  margin: 15px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Table */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.student-table th,
+.student-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.student-table th {
+  background-color: #f5f5f5;
+}
+
+.student-table button {
+  padding: 5px 10px;
+  background-color: #0a66c2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.student-table button:hover {
+  background-color: #084a94;
+}

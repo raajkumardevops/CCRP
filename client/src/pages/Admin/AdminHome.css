@@ -1,0 +1,70 @@
+.admin-home-container {
+  background-color: #f3f2ef;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.admin-navbar {
+  background-color: #0a66c2;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-navbar button {
+  background: white;
+  color: #0a66c2;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Content */
+.admin-home-content {
+  padding: 40px;
+  text-align: center;
+}
+
+.admin-home-content p {
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+/* Cards */
+.admin-card-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.admin-course-card {
+  background: white;
+  padding: 25px;
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.admin-course-card h3 {
+  color: #0a66c2;
+  margin-bottom: 10px;
+}
+
+.admin-course-card p {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.admin-course-card select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
