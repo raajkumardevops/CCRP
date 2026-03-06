@@ -18,6 +18,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["student", "admin"],
       default: "student"
+    },
+
+    resetToken: {
+      type: String
+    },
+
+    resetTokenExpire: {
+      type: Date
     }
   },
   {

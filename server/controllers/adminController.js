@@ -6,7 +6,7 @@ export const getStudentsByCourse = async (req, res) => {
     const { course } = req.params;
 
     const students = await Application.find({
-      courseName: course
+      courseName: { $regex: `^${course}$`, $options: "i" }
     });
 
     res.status(200).json(students);
@@ -40,8 +40,15 @@ export const getStudentDetails = async (req, res) => {
 };
 
 export const getAllApplications = async (req, res) => {
-  const data = await Application.find();
-  res.json(data);
+  try {
+    const data = await Application.find();
+    res.json(data);
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
 };
 
 export const exportStudentsExcel = async (req, res) => {
@@ -49,7 +56,7 @@ export const exportStudentsExcel = async (req, res) => {
     const { course } = req.params;
 
     const students = await Application.find({
-      courseName: { $regex: course, $options: "i" }
+      courseName: { $regex: `^${course}$`, $options: "i" }
     });
 
     const workbook = new ExcelJS.Workbook();
@@ -80,11 +87,9 @@ export const exportStudentsExcel = async (req, res) => {
       `attachment; filename=${course}-students.xlsx`
     );
 
-    await workbook.xlsx.writeFile("students.xlsx");
+    await workbook.xlsx.write(res);
 
-    res.json({
-      message: "Excel file created"
-    });
+    res.end();
 
   } catch (error) {
     res.status(500).json({
@@ -96,38 +101,40 @@ export const exportStudentsExcel = async (req, res) => {
 export const getCourseSummary = async (req, res) => {
   try {
     const technicalCourses = [
-      "Java",
-      "DSA",
-      "Python with Full Stack",
-      "Web Development"
+      "java",
+      "dsa",
+      "python with full stack",
+      "web development"
     ];
 
     const nonTechnicalCourses = [
-      "UI/UX Design",
-      "Cloud Computing",
-      "Data Analyst",
-      "Salesforce Admin"
+      "ui/ux design",
+      "cloud computing",
+      "data analyst",
+      "salesforce admin"
     ];
 
-    // total applications
     const totalApplications = await Application.countDocuments();
 
-    // technical applications
-    const totalTechnical = await Application.countDocuments({
-      courseName: { $in: technicalCourses }
-    });
+    const allApplications = await Application.find();
 
-    // non-technical applications
-    const totalNonTechnical = await Application.countDocuments({
-      courseName: { $in: nonTechnicalCourses }
-    });
+    const totalTechnical = allApplications.filter(app =>
+      technicalCourses.includes(app.courseName.toLowerCase())
+    ).length;
 
-    // course-wise summary
+    const totalNonTechnical = allApplications.filter(app =>
+      nonTechnicalCourses.includes(app.courseName.toLowerCase())
+    ).length;
+
     const courseSummary = await Application.aggregate([
       {
         $group: {
-          _id: "$courseName",
-          count: { $sum: 1 }
+          _id: {
+            $toLower: "$courseName"
+          },
+          count: {
+            $sum: 1
+          }
         }
       }
     ]);
