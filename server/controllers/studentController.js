@@ -55,3 +55,18 @@ export const applyCourse = async (req, res) => {
     });
   }
 };
+
+export const getMyApplications = async (req, res) => {
+  try {
+    const applications = await Application.find({
+      studentId: req.user.id
+    });
+
+    res.status(200).json(applications);
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+};
