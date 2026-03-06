@@ -1,82 +1,154 @@
 .details-container {
-  background-color: #f3f2ef;
+  background-color: #f8f9fb;
   min-height: 100vh;
   font-family: Arial, sans-serif;
 }
 
-/* Navbar */
+/* NAVBAR */
 .details-navbar {
   background-color: #0a66c2;
   color: white;
-  padding: 15px 30px;
+  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.details-navbar button {
-  background: white;
+.details-navbar button{
+   background: white;
   color: #0a66c2;
   border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-/* Card */
+.details-navbar button:hover {
+  background-color: #e8f1ff;
+  transform: scale(1.05);
+}
+
+.details-navbar h2{
+  font-size:27px
+}
+
+
+/* CARD */
 .details-card {
   background: white;
   margin: 40px auto;
-  padding: 30px;
-  width: 700px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  padding: 40px 50px;
+  width: 50%;
+  max-width: 1000px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  font-size: 18px;
 }
 
-.details-card h3 {
-  margin-bottom: 20px;
+.student-name {
+  font-size: 26px;
   color: #0a66c2;
+  margin-bottom: 30px;
 }
 
+/* GRID */
 .details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 20px 40px;
+  margin-bottom: 35px;
 }
 
+.details-grid p {
+  font-size: 15px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.value {
+  font-size: 15px;
+  color: #222;
+}
+
+.highlight {
+  color: #0a66c2;
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-block;
+  background: #e8f1ff;
+  color: #0a66c2;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* SECTION */
 .details-section {
-  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
 }
 
 .details-section h4 {
-  margin-bottom: 5px;
-  color: #333;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
+/* BUTTONS */
 .details-buttons {
+  margin-top: 30px;
   display: flex;
   gap: 15px;
 }
 
 .details-buttons button {
-  padding: 8px 15px;
+  padding: 10px 20px;
   background-color: #0a66c2;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: 600;
 }
 
-.details-buttons button:hover {
-  background-color: #084a94;
-}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .details-card {
+    width: 95%;
+    padding: 30px 20px;
+  }
 
-/* Print Optimization */
-@media print {
-  .details-navbar,
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
   .details-buttons {
-    display: none;
+    flex-direction: column;
+  }
+
+  .details-buttons button {
+    width: 100%;
   }
 }

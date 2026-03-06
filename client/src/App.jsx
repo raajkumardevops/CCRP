@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import RegisterPage from "./pages/Student/RegisterPage"
 import StudentLogin from "./pages/Student/StudentLogin";
 import StudentHome from "./pages/Student/StudentHome";
 import RegisterCourse from "./pages/Student/RegisterCourse";
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         {/* Student */}
         <Route path="/" element={<StudentLogin />} />
+        <Route path="/register" element ={<RegisterPage />}/>
         <Route path="/student/home" element={<StudentHome />} />
         <Route path="/student/register/:course" element={<RegisterCourse />} />
         <Route path="/student/success" element={<SuccessPage />} />

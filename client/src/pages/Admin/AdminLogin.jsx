@@ -7,11 +7,11 @@ function AdminLogin() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Dummy admin credentials
     if (username === "admin" && password === "1234") {
       navigate("/admin/home");
     } else {
@@ -25,6 +25,7 @@ function AdminLogin() {
         <h2>Admin Login</h2>
 
         <form onSubmit={handleLogin}>
+          {/* Username */}
           <input
             type="text"
             placeholder="Username"
@@ -33,19 +34,33 @@ function AdminLogin() {
             required
           />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          {/* Password with Toggle */}
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-          <button type="submit">Login</button>
+            <button
+              type="button"
+              className="toggle-password"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+
+          <button type="submit" className="admin-login-btn">
+            Login
+          </button>
         </form>
 
         <p className="student-link">
-          Student? <span onClick={() => navigate("/")}>Login here</span>
+          Student?{" "}
+          <span onClick={() => navigate("/")}>Login here</span>
         </p>
       </div>
     </div>

@@ -27,14 +27,21 @@ function AdminHome() {
       {/* Navbar */}
       <div className="admin-navbar">
         <h2>Admin Panel - Course Portal</h2>
+
+         <div className="admin-nav-buttons">
+              <button onClick={() => navigate("/admin/analytics")}>
+                Analytics
+              </button>
+       
+
         <button onClick={() => navigate("/admin/login")}>Logout</button>
+         </div>
       </div>
 
       {/* Content */}
       <div className="admin-home-content">
         <p>
-          Select a course category to view student applications and manage
-          registrations.
+          Select a course category below to view and manage student applications. Review applicant details,monitor course registrations, and oversee the selection process efficiently through the admin dashboard.
         </p>
 
         <div className="admin-card-container">
@@ -79,6 +86,9 @@ function AdminHome() {
           </div>
         </div>
       </div>
+       <div className="footer">
+            © 2026 Campus Course Portal | Student Registration System
+       </div>
     </div>
   );
 }

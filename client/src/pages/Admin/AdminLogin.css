@@ -7,50 +7,102 @@
   font-family: Arial, sans-serif;
 }
 
+/* ================= CARD ================= */
+
 .admin-login-card {
   background: white;
-  padding: 40px;
+  padding: 45px 40px;
   width: 350px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
 .admin-login-card h2 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #0a66c2;
+  font-weight: 600;
 }
+
+/* ================= INPUT ================= */
 
 .admin-login-card input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: 0.2s ease;
 }
 
-.admin-login-card button {
+.admin-login-card input:focus {
+  outline: none;
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.15);
+}
+
+/* ================= PASSWORD TOGGLE ================= */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.password-wrapper input {
+  padding-right: 70px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #0a66c2;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.toggle-password:hover {
+  text-decoration: underline;
+}
+
+/* ================= BUTTON ================= */
+
+.admin-login-btn {
   width: 100%;
   padding: 10px;
   background-color: #0a66c2;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-.admin-login-card button:hover {
+.admin-login-btn:hover {
   background-color: #084a94;
+  transform: scale(1.03);
 }
+
+/* ================= LINK ================= */
 
 .student-link {
-  margin-top: 15px;
+  margin-top: 18px;
   font-size: 14px;
 }
 
 .student-link span {
   color: #0a66c2;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+}
+
+.student-link span:hover {
+  text-decoration: underline;
 }

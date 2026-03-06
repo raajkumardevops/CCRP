@@ -10,25 +10,38 @@ function CourseDashboard() {
   const [students] = useState([
     {
       id: 1,
-      name: "Arun Kumar",
+      name: "ARUN",
       regNo: "21CS001",
-      department: "CSE",
+      department: "MCA",
       cgpa: 8.5,
     },
     {
       id: 2,
-      name: "Priya Sharma",
+      name: "DEEPSIKHA K",
       regNo: "21IT015",
-      department: "IT",
+      department: "MCA",
       cgpa: 8.9,
     },
     {
       id: 3,
-      name: "Rahul Verma",
+      name: "DHARSHAN L",
       regNo: "21CS023",
-      department: "CSE",
+      department: "MCA",
       cgpa: 7.8,
     },
+    {
+      id: 4,
+      name: "GOBINATH M",
+      regNo: "21CS023",
+      department: "MCA",
+      cgpa: 7.8,
+    },{
+      id: 5,
+      name: "JANANI",
+      regNo: "21CS023",
+      department: "MCA",
+      cgpa: 7.8,
+    }
   ]);
 
   const [search, setSearch] = useState("");

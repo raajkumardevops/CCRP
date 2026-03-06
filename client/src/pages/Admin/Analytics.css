@@ -4,75 +4,151 @@
   font-family: Arial, sans-serif;
 }
 
-/* Navbar */
+/* ================= NAVBAR ================= */
+
 .analytics-navbar {
   background-color: #0a66c2;
   color: white;
-  padding: 15px 30px;
+  padding: 18px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.analytics-navbar h2 {
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .analytics-navbar button {
   background: white;
   color: #0a66c2;
   border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-/* Content */
+.analytics-navbar button:hover {
+  background-color: #e8f1ff;
+  transform: scale(1.05);
+}
+
+/* ================= CONTENT ================= */
+
 .analytics-content {
-  padding: 40px;
+  padding: 50px 60px;
 }
 
-/* Summary Cards */
+.analytics-container h2{
+  font-size:26px;
+}
+
+/* ================= SUMMARY CARDS ================= */
+
 .summary-cards {
   display: flex;
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: 30px;
   flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
 .summary-card {
   background: white;
-  padding: 20px;
-  width: 250px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  width: 280px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
 .summary-card h3 {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #0a66c2;
+  font-weight: 600;
 }
 
 .summary-card p {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
 }
 
-/* Table */
-.analytics-table-section h3 {
-  margin-bottom: 15px;
+/* 🔥 Hover effect */
+.summary-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
 }
+
+/* ================= TABLE SECTION ================= */
+
+.analytics-table-section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ================= TABLE ================= */
 
 .analytics-table {
   width: 100%;
   border-collapse: collapse;
   background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.analytics-table thead {
+  background-color: #f4f6f9;
 }
 
 .analytics-table th,
 .analytics-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 14px 18px;
   text-align: left;
 }
 
 .analytics-table th {
-  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.analytics-table tbody tr {
+  border-top: 1px solid #eee;
+  transition: background 0.2s ease;
+}
+
+.analytics-table tbody tr:hover {
+  background-color: #f9fbff;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .analytics-content {
+    padding: 30px 20px;
+  }
+
+  .summary-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .summary-card {
+    width: 90%;
+  }
+
+  .analytics-table {
+    display: block;
+    overflow-x: auto;
+  }
 }

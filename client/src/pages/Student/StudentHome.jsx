@@ -26,15 +26,15 @@ function StudentHome() {
     <div className="home-container">
       {/* Navbar */}
       <div className="navbar">
-        <h2>Campus Course Portal</h2>
+        <h2>Campus Course Registration Portal (CCRP) </h2>
         <button onClick={() => navigate("/")}>Logout</button>
       </div>
 
       {/* Description */}
       <div className="home-content">
         <p>
-          Welcome to the Course Registration Portal. Select a course category
-          below and apply for your preferred course.
+          Welcome to the Campus Course Registration Portal. Select from our curated technical and 
+          non-technical courses and submit your application to advance your skills and career readiness.
         </p>
 
         <div className="card-container">
@@ -76,10 +76,17 @@ function StudentHome() {
                 </option>
               ))}
             </select>
-          </div>
+            </div>
+         
+          
+          
         </div>
       </div>
+          <div className="footer">
+            © 2026 Campus Course Portal | Student Registration System
+          </div>
     </div>
+    
   );
 }
 

@@ -1,5 +1,5 @@
 .success-container {
-  background-color: #f3f2ef;
+  background-color: #dfded8;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -10,19 +10,20 @@
 .success-card {
   background: white;
   padding: 40px;
-  width: 400px;
-  border-radius: 8px;
+  width: 500px;
+  border-radius: 10px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
 }
 
 .success-card h2 {
   color: #0a66c2;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  font-size: 26px
 }
 
 .success-card p {
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 25px;
   color: #333;
 }

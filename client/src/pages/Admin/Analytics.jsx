@@ -4,9 +4,7 @@ import "./Analytics.css";
 function Analytics() {
   const navigate = useNavigate();
 
-  // Dummy Data (later from backend)
   const totalApplications = 42;
-
   const technicalCount = 28;
   const nonTechnicalCount = 14;
 
@@ -23,6 +21,7 @@ function Analytics() {
 
   return (
     <div className="analytics-container">
+      
       {/* Navbar */}
       <div className="analytics-navbar">
         <h2>Admin Analytics Dashboard</h2>
@@ -30,8 +29,10 @@ function Analytics() {
       </div>
 
       <div className="analytics-content">
+
         {/* Summary Cards */}
         <div className="summary-cards">
+
           <div className="summary-card">
             <h3>Total Applications</h3>
             <p>{totalApplications}</p>
@@ -46,11 +47,12 @@ function Analytics() {
             <h3>Non-Technical Applications</h3>
             <p>{nonTechnicalCount}</p>
           </div>
+
         </div>
 
         {/* Course-wise Table */}
         <div className="analytics-table-section">
-          <h3>Course-wise Applications</h3>
+          <h3 className="section-title">Course-wise Applications</h3>
 
           <table className="analytics-table">
             <thead>
@@ -68,7 +70,9 @@ function Analytics() {
               ))}
             </tbody>
           </table>
+
         </div>
+
       </div>
     </div>
   );

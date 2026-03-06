@@ -118,16 +118,24 @@ function RegisterCourse() {
             required
           ></textarea>
 
-          <label className="resume-label">
-            Upload Resume (PDF only)
-            <input
-              type="file"
-              name="resume"
-              accept=".pdf"
-              onChange={handleChange}
-              required
-            />
-          </label>
+          <div className="resume-section">
+            <p>Upload Resume (PDF only)</p>
+
+            <label className="custom-file-upload">
+              Choose Resume
+              <input
+                type="file"
+                name="resume"
+                accept=".pdf"
+                onChange={handleChange}
+                required
+              />
+            </label>
+
+            {formData.resume && (
+              <span className="file-name">{formData.resume.name}</span>
+            )}
+          </div>
 
           <button type="submit">Submit Application</button>
         </form>
