@@ -1,21 +1,47 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./AdminLogin.css";
 
 function AdminLogin() {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (username === "admin" && password === "1234") {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData
+      );
+
+      if (res.data.user.role !== "admin") {
+        alert("Access denied. Not admin");
+        return;
+      }
+
+      localStorage.setItem("token", res.data.token);
+
+      alert(res.data.message);
+
       navigate("/admin/home");
-    } else {
-      alert("Invalid Admin Credentials");
+
+    } catch (error) {
+      alert(error.response?.data?.message || "Admin login failed");
     }
   };
 
@@ -25,22 +51,23 @@ function AdminLogin() {
         <h2>Admin Login</h2>
 
         <form onSubmit={handleLogin}>
-          {/* Username */}
+
           <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
 
-          {/* Password with Toggle */}
           <div className="password-wrapper">
             <input
               type={showPassword ? "text" : "password"}
+              name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               required
             />
 
@@ -60,7 +87,9 @@ function AdminLogin() {
 
         <p className="student-link">
           Student?{" "}
-          <span onClick={() => navigate("/")}>Login here</span>
+          <span onClick={() => navigate("/")}>
+            Login here
+          </span>
         </p>
       </div>
     </div>

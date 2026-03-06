@@ -22,30 +22,37 @@ function AdminHome() {
     navigate(`/admin/dashboard/${course}`);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/admin/login");
+  };
+
   return (
     <div className="admin-home-container">
-      {/* Navbar */}
+
       <div className="admin-navbar">
         <h2>Admin Panel - Course Portal</h2>
 
-         <div className="admin-nav-buttons">
-              <button onClick={() => navigate("/admin/analytics")}>
-                Analytics
-              </button>
-       
+        <div className="admin-nav-buttons">
+          <button onClick={() => navigate("/admin/analytics")}>
+            Analytics
+          </button>
 
-        <button onClick={() => navigate("/admin/login")}>Logout</button>
-         </div>
+          <button onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </div>
 
-      {/* Content */}
       <div className="admin-home-content">
         <p>
-          Select a course category below to view and manage student applications. Review applicant details,monitor course registrations, and oversee the selection process efficiently through the admin dashboard.
+          Select a course category below to view and manage student applications.
+          Review applicant details, monitor course registrations, and oversee
+          the selection process efficiently through the admin dashboard.
         </p>
 
         <div className="admin-card-container">
-          {/* Technical */}
+
           <div className="admin-course-card">
             <h3>Technical Courses</h3>
             <p>View students applied for technical courses.</p>
@@ -57,6 +64,7 @@ function AdminHome() {
               <option value="" disabled>
                 Select a Course
               </option>
+
               {technicalCourses.map((course, index) => (
                 <option key={index} value={course}>
                   {course}
@@ -65,7 +73,6 @@ function AdminHome() {
             </select>
           </div>
 
-          {/* Non-Technical */}
           <div className="admin-course-card">
             <h3>Non-Technical Courses</h3>
             <p>View students applied for non-technical courses.</p>
@@ -77,6 +84,7 @@ function AdminHome() {
               <option value="" disabled>
                 Select a Course
               </option>
+
               {nonTechnicalCourses.map((course, index) => (
                 <option key={index} value={course}>
                   {course}
@@ -84,11 +92,14 @@ function AdminHome() {
               ))}
             </select>
           </div>
+
         </div>
       </div>
-       <div className="footer">
-            © 2026 Campus Course Portal | Student Registration System
-       </div>
+
+      <div className="footer">
+        © 2026 Campus Course Portal | Student Registration System
+      </div>
+
     </div>
   );
 }

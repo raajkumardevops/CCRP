@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterPage.css";
+import axios from "axios";
 
 function StudentRegister() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
     confirmPassword: ""
@@ -21,17 +21,32 @@ function StudentRegister() {
     });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
+    const { email, password, confirmPassword } = formData;
+
+    if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
 
-    alert("Registration Successful");
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          email,
+          password
+        }
+      );
 
-    navigate("/login");
+      alert(res.data.message);
+
+      navigate("/");
+
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed");
+    }
   };
 
   return (
@@ -84,13 +99,13 @@ function StudentRegister() {
 
           <div className="divider">or</div>
 
-            <button type="button" className="register-google-btn">
+          <button type="button" className="register-google-btn">
             Continue with Google
-            </button>
+          </button>
 
-            <button type="button" className="register-github-btn">
+          <button type="button" className="register-github-btn">
             Continue with GitHub
-            </button>
+          </button>
 
         </form>
 

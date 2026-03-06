@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f2ef;
+}
+
+.myapps-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #f3f2ef;
+}
+
+.myapps-title {
+  text-align: center;
+  color: #0a66c2;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.myapps-grid {
+  max-width: 800px;
+  margin: auto;
+}
+
+.myapp-card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.myapp-card:hover {
+  transform: translateY(-3px);
+}
+
+.myapp-card h3 {
+  color: #0a66c2;
+  margin-bottom: 12px;
+}
+
+.myapp-card p {
+  margin: 6px 0;
+  color: #333;
+  font-size: 15px;
+}
+
+.no-applications {
+  text-align: center;
+  color: gray;
+  font-size: 18px;
+  margin-top: 40px;
+}

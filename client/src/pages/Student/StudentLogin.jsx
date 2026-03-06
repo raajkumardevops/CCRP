@@ -1,21 +1,42 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./StudentLogin.css";
 
 function Login() {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (username === "student" && password === "1234") {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData
+      );
+
+      localStorage.setItem("token", res.data.token);
+
+      alert(res.data.message);
+
       navigate("/student/home");
-    } else {
-      alert("Invalid Credentials");
+
+    } catch (error) {
+      alert(error.response?.data?.message || "Login failed");
     }
   };
 
@@ -26,22 +47,22 @@ function Login() {
 
         <form onSubmit={handleLogin}>
 
-          {/* Username */}
           <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
 
-          {/* Password */}
           <div className="password-wrapper">
             <input
               type={showPassword ? "text" : "password"}
+              name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               required
             />
 
@@ -54,12 +75,10 @@ function Login() {
             </button>
           </div>
 
-          {/* Login */}
           <button type="submit" className="login-btn">
             Login
           </button>
 
-          {/* OAuth Section */}
           <div className="divider">or</div>
 
           <button type="button" className="google-btn">
@@ -71,7 +90,6 @@ function Login() {
           </button>
         </form>
 
-        {/* Register */}
         <p className="register-link">
           Don't have an account?{" "}
           <span onClick={() => navigate("/register")}>
@@ -79,7 +97,6 @@ function Login() {
           </span>
         </p>
 
-        {/* Admin */}
         <p className="admin-link">
           Admin?{" "}
           <span onClick={() => navigate("/admin/login")}>

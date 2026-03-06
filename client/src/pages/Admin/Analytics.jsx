@@ -1,28 +1,46 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./Analytics.css";
 
 function Analytics() {
   const navigate = useNavigate();
 
-  const totalApplications = 42;
-  const technicalCount = 28;
-  const nonTechnicalCount = 14;
+  const [analytics, setAnalytics] = useState({
+    totalApplications: 0,
+    totalTechnical: 0,
+    totalNonTechnical: 0,
+    courseSummary: []
+  });
 
-  const courseSummary = [
-    { course: "Java", count: 10 },
-    { course: "DSA", count: 8 },
-    { course: "Python with Full Stack", count: 6 },
-    { course: "Web Development", count: 4 },
-    { course: "UI & UX Design", count: 5 },
-    { course: "Cloud Computing", count: 3 },
-    { course: "Data Analyst", count: 4 },
-    { course: "Salesforce Admin", count: 2 },
-  ];
+  useEffect(() => {
+    fetchAnalytics();
+  }, []);
+
+  const fetchAnalytics = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const res = await axios.get(
+        "http://localhost:5000/api/admin/course-summary",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      setAnalytics(res.data);
+
+    } catch (error) {
+      console.error(error);
+      alert("Failed to load analytics");
+    }
+  };
 
   return (
     <div className="analytics-container">
-      
-      {/* Navbar */}
+
       <div className="analytics-navbar">
         <h2>Admin Analytics Dashboard</h2>
         <button onClick={() => navigate("/admin/home")}>Back</button>
@@ -30,27 +48,25 @@ function Analytics() {
 
       <div className="analytics-content">
 
-        {/* Summary Cards */}
         <div className="summary-cards">
 
           <div className="summary-card">
             <h3>Total Applications</h3>
-            <p>{totalApplications}</p>
+            <p>{analytics.totalApplications}</p>
           </div>
 
           <div className="summary-card">
             <h3>Technical Applications</h3>
-            <p>{technicalCount}</p>
+            <p>{analytics.totalTechnical}</p>
           </div>
 
           <div className="summary-card">
             <h3>Non-Technical Applications</h3>
-            <p>{nonTechnicalCount}</p>
+            <p>{analytics.totalNonTechnical}</p>
           </div>
 
         </div>
 
-        {/* Course-wise Table */}
         <div className="analytics-table-section">
           <h3 className="section-title">Course-wise Applications</h3>
 
@@ -61,16 +77,19 @@ function Analytics() {
                 <th>Total Students</th>
               </tr>
             </thead>
+
             <tbody>
-              {courseSummary.map((item, index) => (
+              {analytics.courseSummary.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.course}</td>
+                  <td>
+                    {item._id.charAt(0).toUpperCase() + item._id.slice(1)}
+                  </td>
                   <td>{item.count}</td>
                 </tr>
               ))}
             </tbody>
-          </table>
 
+          </table>
         </div>
 
       </div>
