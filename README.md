@@ -110,3 +110,9 @@ student-course-portal/
 ├── server/ # Node + Express Backend (Upcoming)
 │
 └── README.md
+
+Live Demo:
+https://ccrportal.netlify.app
+
+Backend:
+https://ccrp-sj2e.onrender.com
