@@ -15,9 +15,15 @@ const app = express();
 
 /* ================= CORS ================= */
 
-app.use(cors({
-  origin: "*"
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://ccrportal.netlify.app"
+    ],
+    credentials: true
+  })
+);
 
 /* ================= BODY PARSER ================= */
 
