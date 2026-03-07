@@ -12,10 +12,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.details-navbar button{
-   background: white;
+.details-navbar h2 {
+  font-size: 27px;
+  margin: 0;
+}
+
+.details-navbar button {
+  background: white;
   color: #0a66c2;
   border: none;
   padding: 8px 16px;
@@ -30,21 +36,17 @@
   transform: scale(1.05);
 }
 
-.details-navbar h2{
-  font-size:27px
-}
-
-
 /* CARD */
 .details-card {
   background: white;
   margin: 40px auto;
   padding: 40px 50px;
-  width: 50%;
+  width: 70%;
   max-width: 1000px;
   border-radius: 14px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
   font-size: 18px;
+  box-sizing: border-box;
 }
 
 .student-name {
@@ -117,6 +119,7 @@
   margin-top: 30px;
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .details-buttons button {
@@ -131,9 +134,24 @@
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  .details-navbar {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  .details-navbar h2 {
+    font-size: 20px;
+  }
+
   .details-card {
     width: 95%;
     padding: 30px 20px;
+  }
+
+  .student-name {
+    font-size: 22px;
   }
 
   .details-grid {
@@ -150,5 +168,29 @@
 
   .details-buttons button {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .details-navbar h2 {
+    font-size: 18px;
+  }
+
+  .details-navbar button {
+    width: 120px;
+    font-size: 13px;
+  }
+
+  .details-card {
+    padding: 20px 15px;
+  }
+
+  .details-section h4 {
+    font-size: 16px;
+  }
+
+  .details-grid p,
+  .value {
+    font-size: 14px;
   }
 }

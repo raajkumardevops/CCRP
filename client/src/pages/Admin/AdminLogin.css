@@ -1,10 +1,12 @@
 .admin-login-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #f3f2ef;
   font-family: Arial, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* ================= CARD ================= */
@@ -13,6 +15,7 @@
   background: white;
   padding: 45px 40px;
   width: 350px;
+  max-width: 100%;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   text-align: center;
@@ -105,4 +108,50 @@
 
 .student-link span:hover {
   text-decoration: underline;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .admin-login-card {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .admin-login-card h2 {
+    font-size: 24px;
+  }
+
+  .toggle-password {
+    font-size: 13px;
+  }
+
+  .admin-login-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .student-link {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-login-card {
+    padding: 25px 15px;
+  }
+
+  .admin-login-card h2 {
+    font-size: 22px;
+  }
+
+  .admin-login-card input {
+    font-size: 14px;
+    padding: 9px;
+  }
+
+  .toggle-password {
+    right: 8px;
+    font-size: 12px;
+  }
 }

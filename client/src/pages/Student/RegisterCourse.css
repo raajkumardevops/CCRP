@@ -6,14 +6,17 @@
   align-items: center;
   padding: 20px;
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 .register-card {
   background: white;
   padding: 30px;
   width: 500px;
+  max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
 .register-card h2 {
@@ -31,6 +34,13 @@
   border: 1px solid #ccc;
   font-size: 16px;
   box-sizing: border-box;
+}
+
+.register-card input:focus,
+.register-card textarea:focus {
+  outline: none;
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.15);
 }
 
 .register-card textarea {
@@ -53,6 +63,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  transition: 0.3s ease;
 }
 
 .register-card button:hover {
@@ -88,4 +99,64 @@
   margin: 20px;
   font-size: 18px;
   color: #333;
+  word-break: break-word;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .register-card {
+    width: 100%;
+    padding: 25px 20px;
+  }
+
+  .register-card h2 {
+    font-size: 24px;
+  }
+
+  .register-card input,
+  .register-card textarea {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .file-name {
+    display: block;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 10px;
+  }
+
+  .register-card {
+    padding: 20px 15px;
+  }
+
+  .register-card h2 {
+    font-size: 20px;
+  }
+
+  .register-card input,
+  .register-card textarea {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .custom-file-upload {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .file-name {
+    font-size: 14px;
+  }
+
+  .register-card button {
+    font-size: 14px;
+  }
 }

@@ -15,6 +15,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.dashboard-navbar h2 {
+  margin: 0;
+  font-size: 24px;
 }
 
 .dashboard-navbar button {
@@ -40,8 +46,8 @@
   flex: 1;
 }
 
-.dashboard-content h2{
-  font-size :24px;
+.dashboard-content h2 {
+  font-size: 24px;
 }
 
 .dashboard-content h3 {
@@ -54,11 +60,13 @@
 
 .search-input {
   width: 300px;
+  max-width: 100%;
   padding: 10px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
   margin-bottom: 25px;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .search-input:focus {
@@ -119,12 +127,27 @@
   transform: scale(1.05);
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE RESPONSIVE ================= */
 
 @media (max-width: 768px) {
+  .dashboard-navbar {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  .dashboard-navbar h2 {
+    font-size: 20px;
+    line-height: 1.4;
+  }
 
   .dashboard-content {
-    padding: 30px 20px;
+    padding: 30px 15px;
+  }
+
+  .dashboard-content h3 {
+    font-size: 18px;
   }
 
   .search-input {
@@ -134,6 +157,28 @@
   .student-table {
     display: block;
     overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-navbar h2 {
+    font-size: 18px;
   }
 
+  .dashboard-navbar button {
+    width: 120px;
+    font-size: 13px;
+  }
+
+  .student-table th,
+  .student-table td {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .student-table button {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
 }

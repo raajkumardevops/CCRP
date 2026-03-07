@@ -8,6 +8,7 @@ body {
   min-height: 100vh;
   padding: 40px 20px;
   background-color: #f3f2ef;
+  box-sizing: border-box;
 }
 
 .myapps-title {
@@ -52,4 +53,52 @@ body {
   color: gray;
   font-size: 18px;
   margin-top: 40px;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .myapps-container {
+    padding: 30px 15px;
+  }
+
+  .myapps-title {
+    font-size: 24px;
+  }
+
+  .myapp-card {
+    padding: 18px;
+  }
+
+  .myapp-card h3 {
+    font-size: 20px;
+  }
+
+  .myapp-card p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .myapps-title {
+    font-size: 22px;
+  }
+
+  .myapp-card {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .myapp-card h3 {
+    font-size: 18px;
+  }
+
+  .myapp-card p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .no-applications {
+    font-size: 16px;
+  }
 }

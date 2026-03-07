@@ -7,10 +7,12 @@ body {
 /* ================= CONTAINER ================= */
 
 .login-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* ================= CARD ================= */
@@ -19,6 +21,7 @@ body {
   background: white;
   padding: 45px 40px;
   width: 350px;
+  max-width: 100%;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   text-align: center;
@@ -135,7 +138,7 @@ body {
 
 .google-btn:hover {
   background-color: #f5f5f5;
-   transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 /* GitHub Button */
@@ -154,7 +157,7 @@ body {
 
 .github-btn:hover {
   background-color: #000;
-   transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 .register-link {
@@ -175,4 +178,53 @@ body {
 .register-link span:hover,
 .admin-link span:hover {
   text-decoration: underline;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .login-card {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .login-card h2 {
+    font-size: 24px;
+  }
+
+  .toggle-password {
+    font-size: 13px;
+  }
+
+  .login-btn,
+  .google-btn,
+  .github-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .register-link,
+  .admin-link {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px 15px;
+  }
+
+  .login-card h2 {
+    font-size: 22px;
+  }
+
+  .login-card input {
+    font-size: 14px;
+    padding: 9px;
+  }
+
+  .toggle-password {
+    right: 8px;
+    font-size: 12px;
+  }
 }

@@ -12,6 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 /* ================= CARD ================= */
@@ -20,6 +21,7 @@ body {
   background: white;
   padding: 45px 40px;
   width: 350px;
+  max-width: 100%;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   text-align: center;
@@ -162,4 +164,52 @@ body {
 
 .login-link span:hover {
   text-decoration: underline;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .r-card {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .r-card h2 {
+    font-size: 24px;
+  }
+
+  .register-toggle-password {
+    font-size: 13px;
+  }
+
+  .register-btn,
+  .register-google-btn,
+  .register-github-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .login-link {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .r-card {
+    padding: 25px 15px;
+  }
+
+  .r-card h2 {
+    font-size: 22px;
+  }
+
+  .r-card input {
+    font-size: 14px;
+    padding: 9px;
+  }
+
+  .register-toggle-password {
+    right: 8px;
+    font-size: 12px;
+  }
 }
