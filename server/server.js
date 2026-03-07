@@ -21,6 +21,7 @@ app.use(
       "http://localhost:5173",
       "https://ccrportal.netlify.app"
     ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })
 );
