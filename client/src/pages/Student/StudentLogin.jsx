@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../services/api";
 import "./StudentLogin.css";
 
 function Login() {
@@ -24,8 +24,8 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+      const res = await API.post(
+        "/api/auth/login",
         formData
       );
 

@@ -1,123 +1,61 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./RegisterPage.css";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import API from "../../services/api";
+import "./MyApplications.css";
 
-function StudentRegister() {
-  const navigate = useNavigate();
+function MyApplications() {
+  const [applications, setApplications] = useState([]);
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: ""
-  });
+  useEffect(() => {
+    fetchApplications();
+  }, []);
 
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-
-    const { email, password, confirmPassword } = formData;
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-
+  const fetchApplications = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
+      const token = localStorage.getItem("token");
+
+      const res = await API.get(
+        "/api/student/my-applications",
         {
-          email,
-          password
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
       );
 
-      alert(res.data.message);
-
-      navigate("/");
+      setApplications(res.data);
 
     } catch (error) {
-      alert(error.response?.data?.message || "Registration failed");
+      console.error(error);
+      alert("Failed to load applications");
     }
   };
 
   return (
-    <div className="r-container">
-      <div className="r-card">
-        <h2>Student Registration</h2>
+    <div className="myapps-container">
+      <h2 className="myapps-title">My Applications</h2>
 
-        <form onSubmit={handleRegister}>
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-
-          <div className="register-password-wrapper">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-
-            <button
-              type="button"
-              className="register-toggle-password"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "Hide" : "Show"}
-            </button>
-          </div>
-
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-
-          <button type="submit" className="register-btn">
-            Register
-          </button>
-
-          <div className="divider">or</div>
-
-          <button type="button" className="register-google-btn">
-            Continue with Google
-          </button>
-
-          <button type="button" className="register-github-btn">
-            Continue with GitHub
-          </button>
-
-        </form>
-
-        <p className="login-link">
-          Already have an account?{" "}
-          <span onClick={() => navigate("/")}>
-            Login here
-          </span>
-        </p>
-      </div>
+      {applications.length === 0 ? (
+        <p className="no-applications">No applications found</p>
+      ) : (
+        <div className="myapps-grid">
+          {applications.map((app) => (
+            <div key={app._id} className="myapp-card">
+              <h3>{app.courseName}</h3>
+              <p><strong>Name:</strong> {app.studentName}</p>
+              <p><strong>Register No:</strong> {app.regNo}</p>
+              <p><strong>Department:</strong> {app.department}</p>
+              <p><strong>Year:</strong> {app.year}</p>
+              <p><strong>Phone:</strong> {app.phone}</p>
+              <p><strong>Email:</strong> {app.email}</p>
+              <p><strong>CGPA:</strong> {app.cgpa}</p>
+              <p><strong>Skills:</strong> {app.skills}</p>
+              <p><strong>Reason:</strong> {app.interestReason}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-export default StudentRegister;
+export default MyApplications;

@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../../services/api";
 import "./CourseDashboard.css";
 
 function CourseDashboard() {
@@ -18,8 +18,8 @@ function CourseDashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        `http://localhost:5000/api/admin/students/${course}`,
+      const res = await API.get(
+        `/api/admin/students/${course}`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -43,14 +43,12 @@ function CourseDashboard() {
 
   return (
     <div className="dashboard-container">
-
       <div className="dashboard-navbar">
         <h2>{course} - Applications</h2>
         <button onClick={() => navigate("/admin/home")}>Back</button>
       </div>
 
       <div className="dashboard-content">
-
         <h3>Total Students: {filteredStudents.length}</h3>
 
         <input
@@ -80,18 +78,13 @@ function CourseDashboard() {
                 <td>{student.department}</td>
                 <td>{student.cgpa}</td>
                 <td>
-                  <button
-                    onClick={() =>
-                      navigate(`/admin/student/${student._id}`)
-                    }
-                  >
+                  <button onClick={() => navigate(`/admin/student/${student._id}`)}>
                     View
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
-
         </table>
       </div>
     </div>

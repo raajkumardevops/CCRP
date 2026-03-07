@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../services/api";
 import "./Analytics.css";
 
 function Analytics() {
@@ -21,8 +21,8 @@ function Analytics() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        "http://localhost:5000/api/admin/course-summary",
+      const res = await API.get(
+        "/api/admin/course-summary",
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -40,16 +40,13 @@ function Analytics() {
 
   return (
     <div className="analytics-container">
-
       <div className="analytics-navbar">
         <h2>Admin Analytics Dashboard</h2>
         <button onClick={() => navigate("/admin/home")}>Back</button>
       </div>
 
       <div className="analytics-content">
-
         <div className="summary-cards">
-
           <div className="summary-card">
             <h3>Total Applications</h3>
             <p>{analytics.totalApplications}</p>
@@ -64,7 +61,6 @@ function Analytics() {
             <h3>Non-Technical Applications</h3>
             <p>{analytics.totalNonTechnical}</p>
           </div>
-
         </div>
 
         <div className="analytics-table-section">
@@ -81,17 +77,13 @@ function Analytics() {
             <tbody>
               {analytics.courseSummary.map((item, index) => (
                 <tr key={index}>
-                  <td>
-                    {item._id.charAt(0).toUpperCase() + item._id.slice(1)}
-                  </td>
+                  <td>{item._id.charAt(0).toUpperCase() + item._id.slice(1)}</td>
                   <td>{item.count}</td>
                 </tr>
               ))}
             </tbody>
-
           </table>
         </div>
-
       </div>
     </div>
   );

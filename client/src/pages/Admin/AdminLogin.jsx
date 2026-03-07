@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../services/api";
 import "./AdminLogin.css";
 
 function AdminLogin() {
@@ -24,8 +24,8 @@ function AdminLogin() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+      const res = await API.post(
+        "/api/auth/login",
         formData
       );
 
@@ -51,7 +51,6 @@ function AdminLogin() {
         <h2>Admin Login</h2>
 
         <form onSubmit={handleLogin}>
-
           <input
             type="email"
             name="email"
@@ -86,10 +85,7 @@ function AdminLogin() {
         </form>
 
         <p className="student-link">
-          Student?{" "}
-          <span onClick={() => navigate("/")}>
-            Login here
-          </span>
+          Student? <span onClick={() => navigate("/")}>Login here</span>
         </p>
       </div>
     </div>

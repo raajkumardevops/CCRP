@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../services/api";
 import "./MyApplications.css";
 
 function MyApplications() {
@@ -13,8 +13,8 @@ function MyApplications() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        "http://localhost:5000/api/student/my-applications",
+      const res = await API.get(
+        "/api/student/my-applications",
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -41,42 +41,15 @@ function MyApplications() {
           {applications.map((app) => (
             <div key={app._id} className="myapp-card">
               <h3>{app.courseName}</h3>
-
-              <p>
-                <strong>Name:</strong> {app.studentName}
-              </p>
-
-              <p>
-                <strong>Register No:</strong> {app.regNo}
-              </p>
-
-              <p>
-                <strong>Department:</strong> {app.department}
-              </p>
-
-              <p>
-                <strong>Year:</strong> {app.year}
-              </p>
-
-              <p>
-                <strong>Phone:</strong> {app.phone}
-              </p>
-
-              <p>
-                <strong>Email:</strong> {app.email}
-              </p>
-
-              <p>
-                <strong>CGPA:</strong> {app.cgpa}
-              </p>
-
-              <p>
-                <strong>Skills:</strong> {app.skills}
-              </p>
-
-              <p>
-                <strong>Reason:</strong> {app.interestReason}
-              </p>
+              <p><strong>Name:</strong> {app.studentName}</p>
+              <p><strong>Register No:</strong> {app.regNo}</p>
+              <p><strong>Department:</strong> {app.department}</p>
+              <p><strong>Year:</strong> {app.year}</p>
+              <p><strong>Phone:</strong> {app.phone}</p>
+              <p><strong>Email:</strong> {app.email}</p>
+              <p><strong>CGPA:</strong> {app.cgpa}</p>
+              <p><strong>Skills:</strong> {app.skills}</p>
+              <p><strong>Reason:</strong> {app.interestReason}</p>
             </div>
           ))}
         </div>
