@@ -12,6 +12,9 @@ function RegisterPage() {
     confirmPassword: ""
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -34,7 +37,6 @@ function RegisterPage() {
       });
 
       alert(res.data.message);
-
       navigate("/");
 
     } catch (error) {
@@ -43,8 +45,8 @@ function RegisterPage() {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-card">
+    <div className="r-container">
+      <div className="r-card">
         <h2>Student Register</h2>
 
         <form onSubmit={handleRegister}>
@@ -57,30 +59,63 @@ function RegisterPage() {
             required
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <div className="register-password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
+            <button
+              type="button"
+              className="register-toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
 
-          <button type="submit">
+          <div className="register-password-wrapper">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+
+            <button
+              type="button"
+              className="register-toggle-password"
+              onClick={() =>
+                setShowConfirmPassword(!showConfirmPassword)
+              }
+            >
+              {showConfirmPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+
+          <button type="submit" className="register-btn">
             Register
           </button>
         </form>
 
-        <p>
+        <div className="divider">or</div>
+
+          <button type="button" className="google-btn">
+            Login with Google
+          </button>
+
+          <button type="button" className="github-btn">
+            Login with GitHub
+          </button>
+        
+
+        <p className="login-link">
           Already have account?{" "}
           <span onClick={() => navigate("/")}>
             Login here
