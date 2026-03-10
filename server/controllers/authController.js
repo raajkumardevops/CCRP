@@ -2,22 +2,24 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import nodemailer from "nodemailer";
+
+/* ================= REGISTER ================= */
 
 export const registerUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // check existing email
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({
+        message: "User already exists"
+      });
     }
 
-    // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // create user
     const newUser = new User({
       email,
       password: hashedPassword
@@ -35,6 +37,8 @@ export const registerUser = async (req, res) => {
     });
   }
 };
+
+/* ================= LOGIN ================= */
 
 export const loginUser = async (req, res) => {
   try {
@@ -84,6 +88,8 @@ export const loginUser = async (req, res) => {
   }
 };
 
+/* ================= FORGOT PASSWORD ================= */
+
 export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -96,18 +102,34 @@ export const forgotPassword = async (req, res) => {
       });
     }
 
-    // generate token
     const resetToken = crypto.randomBytes(20).toString("hex");
 
-    // save token
     user.resetToken = resetToken;
-    user.resetTokenExpire = Date.now() + 10 * 60 * 1000; // 10 minutes
+    user.resetTokenExpire = Date.now() + 10 * 60 * 1000;
 
     await user.save();
 
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    const resetLink =
+      `https://ccrportal.netlify.app/reset-password/${resetToken}`;
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Password Reset",
+      html: `<p>Click here to reset password:</p>
+             <a href="${resetLink}">${resetLink}</a>`
+    });
+
     res.status(200).json({
-      message: "Reset token generated",
-      resetToken
+      message: "Reset link sent to email"
     });
 
   } catch (error) {
@@ -117,12 +139,15 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
+/* ================= RESET PASSWORD ================= */
+
 export const resetPassword = async (req, res) => {
   try {
-    const { resetToken, newPassword } = req.body;
+    const { token } = req.params;
+    const { newPassword } = req.body;
 
     const user = await User.findOne({
-      resetToken,
+      resetToken: token,
       resetTokenExpire: { $gt: Date.now() }
     });
 
