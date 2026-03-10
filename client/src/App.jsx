@@ -6,6 +6,8 @@ import StudentHome from "./pages/Student/StudentHome";
 import RegisterCourse from "./pages/Student/RegisterCourse";
 import SuccessPage from "./pages/Student/SuccessPage";
 import MyApplications from "./pages/Student/MyApplications";
+import ForgotPassword from "./pages/Student/ForgotPassword";
+import ResetPassword from "./pages/Student/ResetPassword";
 
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminHome from "./pages/Admin/AdminHome";
@@ -23,6 +25,8 @@ function App() {
         {/* Student Public */}
         <Route path="/" element={<StudentLogin />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
 
         {/* Student Protected */}
         <Route
