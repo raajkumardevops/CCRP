@@ -27,8 +27,25 @@ export const registerUser = async (req, res) => {
 
     await newUser.save();
 
+    const token = jwt.sign(
+      {
+        id: newUser._id,
+        role: newUser.role
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d"
+      }
+    );
+
     res.status(201).json({
-      message: "Registration successful"
+      message: "Registration successful",
+      token,
+      user: {
+        id: newUser._id,
+        email: newUser.email,
+        role: newUser.role
+      }
     });
 
   } catch (error) {
@@ -93,9 +110,6 @@ export const loginUser = async (req, res) => {
 export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
-
-    console.log("Forgot password route hit");
-    console.log("Email:", email);
 
     const user = await User.findOne({ email });
 
