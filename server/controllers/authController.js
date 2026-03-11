@@ -94,6 +94,9 @@ export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
 
+    console.log("Forgot password route hit");
+    console.log("Email:", email);
+
     const user = await User.findOne({ email });
 
     if (!user) {
