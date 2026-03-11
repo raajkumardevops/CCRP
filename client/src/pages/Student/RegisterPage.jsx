@@ -36,8 +36,11 @@ function RegisterPage() {
         password: formData.password
       });
 
+      localStorage.setItem("token", res.data.token);
+
       alert(res.data.message);
-      navigate("/");
+
+      navigate("/student/home");
 
     } catch (error) {
       alert(error.response?.data?.message || "Registration failed");
@@ -91,9 +94,7 @@ function RegisterPage() {
             <button
               type="button"
               className="register-toggle-password"
-              onClick={() =>
-                setShowConfirmPassword(!showConfirmPassword)
-              }
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
               {showConfirmPassword ? "Hide" : "Show"}
             </button>
@@ -106,14 +107,13 @@ function RegisterPage() {
 
         <div className="divider">or</div>
 
-          <button type="button" className="google-btn">
-            Login with Google
-          </button>
+        <button type="button" className="google-btn">
+          Login with Google
+        </button>
 
-          <button type="button" className="github-btn">
-            Login with GitHub
-          </button>
-        
+        <button type="button" className="github-btn">
+          Login with GitHub
+        </button>
 
         <p className="login-link">
           Already have account?{" "}
